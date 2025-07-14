@@ -20,7 +20,7 @@
   <main>
     <!-- 메인 이미지 -->
     <section class="main-image">
-      <img src="https://example.com/puppy.jpg" alt="강아지 사진" />
+      <img src="assets/puppy.jpg" alt="강아지 사진" />
       <div class="carousel-dots">
         <span class="dot active"></span>
         <span class="dot"></span>
@@ -37,7 +37,7 @@
       </div>
 
       <div class="card urgent">
-        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <img src="assets/cat.jpg" alt="고양이 사진" />
         <div class="content">
           <h3>제주 서귀포 있는 친구 치료비 모금</h3>
           <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
@@ -51,7 +51,7 @@
 
       <!-- 동일 카드 반복 -->
       <div class="card urgent">
-        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <img src="assets/cat.jpg" alt="고양이 사진" />
         <div class="content">
           <h3>제주 서귀포 있는 친구 치료비 모금</h3>
           <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
@@ -72,7 +72,7 @@
       </div>
 
       <div class="card past">
-        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <img src="assets/cat.jpg" alt="고양이 사진" />
         <div class="content">
           <h3>제주 서귀포 있는 친구 치료비 모금</h3>
           <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
@@ -81,7 +81,7 @@
       </div>
 
       <div class="card past">
-        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <img src="assets/cat.jpg" alt="고양이 사진" />
         <div class="content">
           <h3>제주 서귀포 있는 친구 치료비 모금</h3>
           <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
