@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>아름다움을 포장해 헤헤</title>
-  <link rel="stylesheet" href="style.css" />
+
 </head>
 <body>
   <header>
@@ -19,7 +19,6 @@
 
   <main>
     <!-- 메인 이미지 섹션 제거 -->
-    <section class="main-image">
       <div class="carousel-dots">
         <span class="dot active"></span>
         <span class="dot"></span>
