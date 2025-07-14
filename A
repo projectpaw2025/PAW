@@ -3,87 +3,193 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>아름다움을 포장해 헤헤</title>
+  <title>Project PAW</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* 기본 스타일링 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+    }
 
+    header {
+      background-color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .main-content {
+      margin: 20px;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .category-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 30%;
+      text-align: center;
+    }
+
+    .category-card h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar-container {
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      background-color: #e0e0e0;
+      border-radius: 8px;
+      height: 10px;
+      width: 100%;
+      position: relative;
+    }
+
+    .progress {
+      background-color: #3498db;
+      border-radius: 8px;
+      height: 100%;
+    }
+
+    .donate-btn {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .donate-btn:hover {
+      background-color: #2980b9;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">
-      <span>🐾🐾</span>
-      <h1>아름다움을 포장해 비싸게 팔고 싶다.</h1>
-    </div>
+    <h1>Project PAW</h1>
     <nav>
-      <a href="#">Login</a>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Donation</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <!-- 메인 이미지 섹션 제거 -->
-      <div class="carousel-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </section>
-
-    <!-- 도움이 급한 친구들 섹션 -->
-    <section class="help-needed">
-      <div class="section-header">
-        <h2>도움이 급한 친구들이 있어요.</h2>
-        <a href="#">전체보기</a>
-      </div>
-
-      <div class="card urgent">
-        <div class="content">
-          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
-          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
+  <div class="main-content">
+    <h2>Categories</h2>
+    <div class="categories">
+      <!-- Category 1 -->
+      <div class="category-card">
+        <h3>Category 1</h3>
+        <p>Ensuring medicine for all the children.</p>
+        <div class="progress-bar-container">
           <div class="progress-bar">
-            <div class="progress" style="width: 66%; background-color: #a04ad3;"></div>
+            <div class="progress" style="width: 50%"></div>
           </div>
-          <small>200만원 남음 / 300만원 필요</small>
-          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
         </div>
+        <button class="donate-btn">Donate Now</button>
       </div>
-
-      <!-- 동일 카드 반복 -->
-      <div class="card urgent">
-        <div class="content">
-          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
-          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
+      <!-- Category 2 -->
+      <div class="category-card">
+        <h3>Category 2</h3>
+        <p>Ensuring medicine for all the children.</p>
+        <div class="progress-bar-container">
           <div class="progress-bar">
-            <div class="progress" style="width: 66%; background-color: #a04ad3;"></div>
+            <div class="progress" style="width: 60%"></div>
           </div>
-          <small>200만원 남음 / 300만원 필요</small>
-          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
         </div>
+        <button class="donate-btn">Donate Now</button>
       </div>
-    </section>
-
-    <!-- 도움 받았던 친구들 -->
-    <section class="helped-friends">
-      <div class="section-header">
-        <h2>도움 받았던 친구들은 어떻게 지내고 있을까?</h2>
-        <a href="#">전체보기</a>
-      </div>
-
-      <div class="card past">
-        <div class="content">
-          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
-          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
-          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
+      <!-- Category 3 -->
+      <div class="category-card">
+        <h3>Category 3</h3>
+        <p>Ensuring medicine for all the children.</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 45%"></div>
+          </div>
         </div>
+        <button class="donate-btn">Donate Now</button>
       </div>
+    </div>
 
-      <div class="card past">
-        <div class="content">
-          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
-          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
-          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
+    <!-- Second row of categories -->
+    <div class="categories">
+      <!-- Category 2 -->
+      <div class="category-card">
+        <h3>Category 2</h3>
+        <p>Ensuring medicine for all the children.</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 80%"></div>
+          </div>
         </div>
+        <button class="donate-btn">Donate Now</button>
       </div>
-    </section>
-  </main>
+      <!-- Category 3 -->
+      <div class="category-card">
+        <h3>Category 3</h3>
+        <p>Ensuring medicine for all the children.</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 56%"></div>
+          </div>
+        </div>
+        <button class="donate-btn">Donate Now</button>
+      </div>
+      <!-- Category 3 -->
+      <div class="category-card">
+        <h3>Category 3</h3>
+        <p>Ensuring medicine for all the children.</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 50%"></div>
+          </div>
+        </div>
+        <button class="donate-btn">Donate Now</button>
+      </div>
+    </div>
+
+    <footer>
+      <a href="#">See More</a>
+    </footer>
+  </div>
+
 </body>
 </html>
 
