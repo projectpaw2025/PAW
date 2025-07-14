@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server.js"  // Build Command:PAW
+    "start": "node server.js"  // PAW
   }
 }
 
