@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아름다움을 포장해</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>🐾🐾</span>
+      <h1>아름다움을 포장해 비싸게 팔고 싶다.</h1>
+    </div>
+    <nav>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 메인 이미지 -->
+    <section class="main-image">
+      <img src="https://example.com/puppy.jpg" alt="강아지 사진" />
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- 도움이 급한 친구들 -->
+    <section class="help-needed">
+      <div class="section-header">
+        <h2>도움이 급한 친구들이 있어요.</h2>
+        <a href="#">전체보기</a>
+      </div>
+
+      <div class="card urgent">
+        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <div class="content">
+          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
+          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 66%; background-color: #a04ad3;"></div>
+          </div>
+          <small>200만원 남음 / 300만원 필요</small>
+          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
+        </div>
+      </div>
+
+      <!-- 동일 카드 반복 -->
+      <div class="card urgent">
+        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <div class="content">
+          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
+          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 66%; background-color: #a04ad3;"></div>
+          </div>
+          <small>200만원 남음 / 300만원 필요</small>
+          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 도움 받았던 친구들 -->
+    <section class="helped-friends">
+      <div class="section-header">
+        <h2>도움 받았던 친구들은 어떻게 지내고 있을까?</h2>
+        <a href="#">전체보기</a>
+      </div>
+
+      <div class="card past">
+        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <div class="content">
+          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
+          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
+          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
+        </div>
+      </div>
+
+      <div class="card past">
+        <img src="https://example.com/cat.jpg" alt="고양이 사진" />
+        <div class="content">
+          <h3>제주 서귀포 있는 친구 치료비 모금</h3>
+          <p>어제 용포리 바닷가 방항에서 교통사고를 당한 길고양이를 구조했습니다. 현재 수술을 받아야 되는 상황입니다. 많은 성원 부탁드립니다.</p>
+          <p>도움의 손길을 내밀어 주세요. <span class="icon">🔗</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
