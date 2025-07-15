@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>로그인 화면</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 30%;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .sidebar-logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .sidebar-logo i {
+      margin-left: 5px;
+    }
+
+    .decor {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .decor span {
+      width: 10px;
+      height: 10px;
+      background: #3daef3;
+      border-radius: 50%;
+    }
+
+    .content {
+      width: 70%;
+      background: #fff;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .content h2 {
+      color: #777;
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    .sns-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .login-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .login-button:hover {
+      transform: scale(1.1);
+    }
+
+    .google { background: #db4437; }
+    .apple  { background: #000; }
+    .kakao  { background: #fee500; color: #000; font-weight: bold; }
+    .naver  { background: #1ec800; }
+    .instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+
+    .login-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: 1px solid #3daef3;
+      padding: 5px 15px;
+      border-radius: 15px;
+      color: #3daef3;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      PAW <i class="fas fa-paw"></i>
+    </div>
+    <div class="decor">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="content">
+    <a href="#" class="login-link">Login</a>
+    <h2>SNS계정으로 간편로그인하기</h2>
+    <div class="sns-buttons">
+      <div class="login-button google">
+        <i class="fab fa-google"></i>
+      </div>
+      <div class="login-button apple">
+        <i class="fab fa-apple"></i>
+      </div>
+      <div class="login-button kakao">
+        K
+      </div>
+      <div class="login-button naver">
+        N
+      </div>
+      <div class="login-button instagram">
+        <i class="fab fa-instagram"></i>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
