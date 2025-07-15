@@ -1,194 +1,243 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project PAW</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAW Donation</title>
   <style>
-    /* 기본 스타일링 */
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f4f6f9;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background: #fff;
     }
-
     header {
-      background-color: #fff;
-      padding: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 40px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
-    header h1 {
-      font-size: 24px;
-      color: #333;
+    header .logo img {
+      height: 40px;
     }
-
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
     nav a {
-      margin-left: 20px;
       text-decoration: none;
       color: #333;
-      font-weight: bold;
+      font-size: 14px;
+    }
+    nav a.active {
+      color: #007BFF;
+    }
+    .login-btn {
+      border: 1px solid #007BFF;
+      background: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      color: #007BFF;
+      text-decoration: none;
     }
 
-    .main-content {
-      margin: 20px;
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
     }
-
-    .categories {
+    .hero h1 {
+      font-size: 32px;
+    }
+    .hero p {
+      color: #666;
+      margin-top: 10px;
+    }
+    .content {
       display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+    .text-block {
+      max-width: 500px;
+    }
+    .text-block h2 {
+      font-size: 40px;
+    }
+    .text-block span {
+      color: #007BFF;
+    }
+    .text-block p {
+      color: #666;
+      line-height: 1.6;
     }
 
-    .category-card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      width: 30%;
-      text-align: center;
+    .card {
+      background: #fff;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      max-width: 400px;
     }
-
-    .category-card h3 {
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
-
-    .progress-bar-container {
-      margin: 20px 0;
-    }
-
-    .progress-bar {
-      background-color: #e0e0e0;
-      border-radius: 8px;
-      height: 10px;
+    .card img {
       width: 100%;
-      position: relative;
+      display: block;
     }
-
+    .card-content {
+      padding: 20px;
+    }
+    .card-content small {
+      display: block;
+      color: #999;
+      margin-bottom: 5px;
+    }
+    .card-content h4 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+    .progress-bar {
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 4px;
+      margin: 10px 0;
+    }
     .progress {
-      background-color: #3498db;
-      border-radius: 8px;
+      background: #007BFF;
       height: 100%;
+      width: 45%;
     }
-
     .donate-btn {
-      background-color: #3498db;
+      display: inline-block;
+      border: 1px solid #007BFF;
+      color: #007BFF;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 40px 20px;
+    }
+    .action {
+      background: #007BFF;
       color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 20px;
+      padding: 20px;
+      width: 180px;
       text-align: center;
     }
-
-    .donate-btn:hover {
-      background-color: #2980b9;
+    .action.secondary {
+      background: #f8f8f8;
+      color: #333;
+    }
+    .action a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #fff;
+      color: #007BFF;
+      padding: 5px 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 12px;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .text-block h2 {
+        font-size: 32px;
+      }
+      .hero h1 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Project PAW</h1>
+    <div class="logo">
+      <img src="logo.png" alt="PAW Logo">
+    </div>
     <nav>
-      <a href="#">Home</a>
+      <a href="#" class="active">Home</a>
       <a href="#">About</a>
       <a href="#">Donation</a>
       <a href="#">Blog</a>
       <a href="#">Contact</a>
+      <a href="#">Menu</a>
+      <a href="#" class="login-btn">Login</a>
     </nav>
   </header>
 
-  <div class="main-content">
-    <h2>Categories</h2>
-    <div class="categories">
-      <!-- Category 1 -->
-      <div class="category-card">
-        <h3>Category 1</h3>
-        <p>Ensuring medicine for all the children.</p>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 50%"></div>
-          </div>
+  <section class="hero">
+    <h1>Help us <span style="color:#007BFF;">save</span> the world</h1>
+    <p>Mattis et aliquam fermentum sed sagittis eu elit mauris. Nisl eros vel neque vitae lorem molestie.</p>
+  </section>
+
+  <section class="content">
+    <div class="text-block">
+      <h2>Donating is about making a <span>Differene.</span></h2>
+      <p>Eu viverra erat fusce tortor cum libero, pharetra. Nunc cursus cursus odio convallis aliquam in nunc. Commodo ultrices massa urna gravida interdum fringilla massa cum.</p>
+    </div>
+
+    <div class="card">
+      <img src="main1.png" alt="Children 1">
+      <div class="card-content">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar">
+          <div class="progress"></div>
         </div>
-        <button class="donate-btn">Donate Now</button>
-      </div>
-      <!-- Category 2 -->
-      <div class="category-card">
-        <h3>Category 2</h3>
-        <p>Ensuring medicine for all the children.</p>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 60%"></div>
-          </div>
-        </div>
-        <button class="donate-btn">Donate Now</button>
-      </div>
-      <!-- Category 3 -->
-      <div class="category-card">
-        <h3>Category 3</h3>
-        <p>Ensuring medicine for all the children.</p>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 45%"></div>
-          </div>
-        </div>
-        <button class="donate-btn">Donate Now</button>
+        <a href="#" class="donate-btn">Donate Now</a>
       </div>
     </div>
 
-    <!-- Second row of categories -->
-    <div class="categories">
-      <!-- Category 2 -->
-      <div class="category-card">
-        <h3>Category 2</h3>
-        <p>Ensuring medicine for all the children.</p>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 80%"></div>
-          </div>
+    <div class="card">
+      <img src="main2.png" alt="Children 2">
+      <div class="card-content">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar">
+          <div class="progress"></div>
         </div>
-        <button class="donate-btn">Donate Now</button>
-      </div>
-      <!-- Category 3 -->
-      <div class="category-card">
-        <h3>Category 3</h3>
-        <p>Ensuring medicine for all the children.</p>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 56%"></div>
-          </div>
-        </div>
-        <button class="donate-btn">Donate Now</button>
-      </div>
-      <!-- Category 3 -->
-      <div class="category-card">
-        <h3>Category 3</h3>
-        <p>Ensuring medicine for all the children.</p>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="progress" style="width: 50%"></div>
-          </div>
-        </div>
-        <button class="donate-btn">Donate Now</button>
+        <a href="#" class="donate-btn">Donate Now</a>
       </div>
     </div>
+  </section>
 
-    <footer>
-      <a href="#">See More</a>
-    </footer>
-  </div>
-
+  <section class="actions">
+    <div class="action">
+      <h4>Donation</h4>
+      <p>Mattis et aliquam fermentum sed sagittis eu elit mauris.</p>
+      <a href="#">Learn More</a>
+    </div>
+    <div class="action secondary">
+      <h4>Volunteer</h4>
+      <p>Mattis et aliquam fermentum sed sagittis eu elit mauris.</p>
+      <a href="#">Learn More</a>
+    </div>
+  </section>
 </body>
 </html>
+
