@@ -4,14 +4,19 @@
   <meta charset="UTF-8" />
   <title>로그인 페이지</title>
 
-  <!-- 카카오 SDK -->
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- Kakao SDK -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
-    Kakao.init('9917e1abbf40830145f513dc1121157b'); // 발급받은 JavaScript 키
+    Kakao.init('9917e1abbf40830145f513dc1121157b');
     console.log('Kakao SDK 초기화됨:', Kakao.isInitialized());
   </script>
 
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
     body {
       margin: 0;
@@ -132,19 +137,23 @@
     <a href="#" class="login-link">Login</a>
     <h2>SNS계정으로 간편로그인하기</h2>
     <div class="sns-buttons">
-      <div class="login-button google">
+      <!-- Google -->
+      <div class="login-button google" id="google-login-btn">
         <i class="fab fa-google"></i>
       </div>
+
+      <!-- Apple (기능 미구현 상태) -->
       <div class="login-button apple">
         <i class="fab fa-apple"></i>
       </div>
-      <!-- kakao 로그인 버튼에 id 추가 -->
-      <div class="login-button kakao" id="kakao-login-btn">
-        K
-      </div>
-      <div class="login-button naver">
-        N
-      </div>
+
+      <!-- Kakao -->
+      <div class="login-button kakao" id="kakao-login-btn">K</div>
+
+      <!-- Naver (기능 미구현 상태) -->
+      <div class="login-button naver">N</div>
+
+      <!-- Instagram (기능 미구현 상태) -->
       <div class="login-button instagram">
         <i class="fab fa-instagram"></i>
       </div>
@@ -152,29 +161,54 @@
   </div>
 
   <!-- 로그인 기능 스크립트 -->
- <script>
-  document.getElementById('kakao-login-btn').addEventListener('click', function () {
-    Kakao.Auth.login({
-      success: function (authObj) {
-        console.log('카카오 로그인 성공', authObj);
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (res) {
-            console.log('사용자 정보:', res);
-            alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
-            // ✅ 로그인 성공 후 메인 화면으로 이동
-            window.location.assign('https://projectpaw.co.kr');
-          },
-          fail: function (error) {
-            console.error('사용자 정보 요청 실패', error);
-            alert('사용자 정보를 가져오는 데 실패했습니다.');
-          }
-        });
-      },
-      fail: function (err) {
-        console.error('카카오 로그인 실패', err);
-        alert('카카오 로그인에 실패했습니다.');
-      }
+  <script>
+    // ✅ Kakao Login
+    document.getElementById('kakao-login-btn').addEventListener('click', function () {
+      Kakao.Auth.login({
+        success: function (authObj) {
+          console.log('카카오 로그인 성공', authObj);
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function (res) {
+              console.log('사용자 정보:', res);
+              alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
+              window.location.assign('https://projectpaw.co.kr');
+            },
+            fail: function (error) {
+              console.error('사용자 정보 요청 실패', error);
+              alert('사용자 정보를 가져오는 데 실패했습니다.');
+            }
+          });
+        },
+        fail: function (err) {
+          console.error('카카오 로그인 실패', err);
+          alert('카카오 로그인에 실패했습니다.');
+        }
+      });
     });
-  });
-</script>
+
+    // ✅ Google Login
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "656866984778-8jsv71j60fsjf4d34d0hav83i4ktf8u7.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+
+      document.getElementById('google-login-btn').addEventListener('click', function () {
+        google.accounts.id.prompt(); // 자동 로그인 UI 표시
+      });
+    };
+
+    function handleCredentialResponse(response) {
+      const jwt = response.credential;
+      console.log("Google JWT:", jwt);
+
+      // ✅ JWT 디코딩 (선택적)
+      const payload = JSON.parse(atob(jwt.split('.')[1]));
+      alert(`${payload.name || payload.email}님 환영합니다!`);
+      window.location.assign('https://projectpaw.co.kr');
+    }
+  </script>
+</body>
+</html>
+
