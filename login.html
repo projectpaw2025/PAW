@@ -144,24 +144,31 @@
 
   <!-- ✅ 로그인 기능 스크립트 -->
   <script>
-    // ✅ Kakao Login
-    document.getElementById('kakao-login-btn').addEventListener('click', function () {
-      Kakao.Auth.login({
-        success: function (authObj) {
-          Kakao.API.request({
-            url: '/v2/user/me',
-            success: function (res) {
-              alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
-              localStorage.setItem("isLoggedIn", "true"); // ✅ 로그인 상태 저장
-              window.location.assign('https://projectpaw.co.kr');
-            }
-          });
-        },
-        fail: function (err) {
-          alert('카카오 로그인 실패');
+// ✅ Kakao Login (팝업 방식 대응)
+document.getElementById('kakao-login-btn').addEventListener('click', function () {
+  Kakao.Auth.login({
+    success: function (authObj) {
+      Kakao.API.request({
+        url: '/v2/user/me',
+        success: function (res) {
+          alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
+          localStorage.setItem("isLoggedIn", "true");
+          if (window.opener) {
+            window.opener.localStorage.setItem("isLoggedIn", "true"); // 부모창에도 저장
+            window.opener.location.href = 'https://projectpaw.co.kr';
+            window.close(); // 팝업 닫기
+          } else {
+            // 팝업 아닌 경우 fallback
+            window.location.assign('https://projectpaw.co.kr');
+          }
         }
       });
-    });
+    },
+    fail: function (err) {
+      alert('카카오 로그인 실패');
+    }
+  });
+});
 
     // ✅ Google Login
     window.onload = function () {
