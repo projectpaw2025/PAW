@@ -14,6 +14,9 @@
     console.log('Kakao SDK 초기화됨:', Kakao.isInitialized());
   </script>
 
+  <!-- Naver SDK -->
+  <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -102,12 +105,8 @@
     }
 
     .google { background: #db4437; }
-    .apple  { background: #000; }
     .kakao  { background: #fee500; color: #000; font-weight: bold; }
     .naver  { background: #1ec800; }
-    .instagram {
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
 
     .login-link {
       position: absolute;
@@ -142,21 +141,11 @@
         <i class="fab fa-google"></i>
       </div>
 
-      <!-- Apple (기능 미구현 상태) -->
-      <div class="login-button apple">
-        <i class="fab fa-apple"></i>
-      </div>
-
       <!-- Kakao -->
       <div class="login-button kakao" id="kakao-login-btn">K</div>
 
-      <!-- Naver (기능 미구현 상태) -->
-      <div class="login-button naver">N</div>
-
-      <!-- Instagram (기능 미구현 상태) -->
-      <div class="login-button instagram">
-        <i class="fab fa-instagram"></i>
-      </div>
+      <!-- Naver -->
+      <div class="login-button naver" id="naver-login-btn">N</div>
     </div>
   </div>
 
@@ -203,12 +192,26 @@
       const jwt = response.credential;
       console.log("Google JWT:", jwt);
 
-      // ✅ JWT 디코딩 (선택적)
       const payload = JSON.parse(atob(jwt.split('.')[1]));
       alert(`${payload.name || payload.email}님 환영합니다!`);
       window.location.assign('https://projectpaw.co.kr');
     }
+
+    // ✅ Naver Login
+    document.getElementById('naver-login-btn').addEventListener('click', function () {
+      const naverLogin = new naver.LoginWithNaverId({
+        clientId: "SO07cKed8aScWuacSBqk",
+        callbackUrl: window.location.origin + "/naver_callback.html", // 콜백 페이지 만들어주세요!
+        isPopup: true,
+        loginButton: { color: "green", type: 3, height: 40 } // 안 씀
+      });
+      naverLogin.init();
+      naverLogin.getLoginStatus(function (status) {
+        if (!status) {
+          naverLogin.login();
+        }
+      });
+    });
   </script>
 </body>
 </html>
-
