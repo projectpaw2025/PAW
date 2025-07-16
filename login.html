@@ -142,45 +142,51 @@
     <div id="naverIdLogin"></div>
   </div>
 
-  <!-- ✅ 로그인 기능 스크립트 -->
   <script>
-// ✅ Kakao Login (팝업 방식 대응)
-document.getElementById('kakao-login-btn').addEventListener('click', function () {
-  Kakao.Auth.login({
-    success: function (authObj) {
-      Kakao.API.request({
-        url: '/v2/user/me',
-        success: function (res) {
-          alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
-          localStorage.setItem("isLoggedIn", "true");
-          if (window.opener) {
-            window.opener.localStorage.setItem("isLoggedIn", "true"); // 부모창에도 저장
-            window.opener.location.href = 'https://projectpaw.co.kr';
-            window.close(); // 팝업 닫기
-          } else {
-            // 팝업 아닌 경우 fallback
-            window.location.assign('https://projectpaw.co.kr');
-          }
+    // Kakao 로그인 (scope 추가 및 팝업 -> 부모창 이동 처리)
+    document.getElementById('kakao-login-btn').addEventListener('click', function () {
+      Kakao.Auth.login({
+        scope: 'profile_nickname,account_email',
+        success: function (authObj) {
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function (res) {
+              console.log(res); // 사용자 정보 확인용
+              alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
+              if (window.opener) {
+                window.opener.localStorage.setItem("isLoggedIn", "true");
+                window.opener.location.href = 'https://projectpaw.co.kr';
+                window.close();
+              } else {
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.assign('https://projectpaw.co.kr');
+              }
+            },
+            fail: function (error) {
+              console.error(error);
+              alert('사용자 정보 요청 실패');
+            }
+          });
+        },
+        fail: function (err) {
+          console.error(err);
+          alert('카카오 로그인 실패');
         }
       });
-    },
-    fail: function (err) {
-      alert('카카오 로그인 실패');
-    }
-  });
-});
+    });
 
-    // ✅ Google Login
+    // Google 로그인
     window.onload = function () {
       google.accounts.id.initialize({
         client_id: "656866984778-8jsv71j60fsjf4d34d0hav83i4ktf8u7.apps.googleusercontent.com",
         callback: handleCredentialResponse
       });
+
       document.getElementById('google-login-btn').addEventListener('click', function () {
         google.accounts.id.prompt();
       });
 
-      // ✅ Naver Login SDK 설정
+      // Naver 로그인 초기화
       const naverLogin = new naver.LoginWithNaverId({
         clientId: "SO07cKed8aScWuacSBqk",
         callbackUrl: window.location.origin + "/naver_callback.html",
@@ -198,7 +204,7 @@ document.getElementById('kakao-login-btn').addEventListener('click', function ()
       const jwt = response.credential;
       const payload = JSON.parse(atob(jwt.split('.')[1]));
       alert(`${payload.name || payload.email}님 환영합니다!`);
-      localStorage.setItem("isLoggedIn", "true"); // ✅ 로그인 상태 저장
+      localStorage.setItem("isLoggedIn", "true");
       window.location.assign('https://projectpaw.co.kr');
     }
   </script>
