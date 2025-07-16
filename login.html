@@ -107,7 +107,6 @@
     .kakao  { background: #fee500; color: #000; font-weight: bold; }
     .naver  { background: #1ec800; }
 
-    /* 숨김 처리된 네이버 SDK 버튼 */
     #naverIdLogin {
       display: none;
     }
@@ -143,7 +142,7 @@
     <div id="naverIdLogin"></div>
   </div>
 
-  <!-- 로그인 기능 스크립트 -->
+  <!-- ✅ 로그인 기능 스크립트 -->
   <script>
     // ✅ Kakao Login
     document.getElementById('kakao-login-btn').addEventListener('click', function () {
@@ -153,6 +152,7 @@
             url: '/v2/user/me',
             success: function (res) {
               alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
+              localStorage.setItem("isLoggedIn", "true"); // ✅ 로그인 상태 저장
               window.location.assign('https://projectpaw.co.kr');
             }
           });
@@ -191,6 +191,7 @@
       const jwt = response.credential;
       const payload = JSON.parse(atob(jwt.split('.')[1]));
       alert(`${payload.name || payload.email}님 환영합니다!`);
+      localStorage.setItem("isLoggedIn", "true"); // ✅ 로그인 상태 저장
       window.location.assign('https://projectpaw.co.kr');
     }
   </script>
