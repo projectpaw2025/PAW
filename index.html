@@ -151,7 +151,6 @@
       font-size: 12px;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -186,7 +185,7 @@
       <a href="#">Blog</a>
       <a href="#">Contact us</a>
       <a href="#">Menu</a>
-      <!-- ✅ 여기서 깃허브 login.html로 연결 -->
+      <!-- ✅ 로그인/로그아웃 버튼 -->
       <a href="https://projectpaw.co.kr/login.html" class="login-btn">Login</a>
     </nav>
   </header>
@@ -198,7 +197,7 @@
 
   <section class="content">
     <div class="text-block">
-      <h2>Donating is about making a <span>Differene.</span></h2>
+      <h2>Donating is about making a <span>Difference.</span></h2>
       <p>Eu viverra erat fusce tortor cum libero, pharetra. Nunc cursus cursus odio convallis aliquam in nunc. Commodo ultrices massa urna gravida interdum fringilla massa cum.</p>
     </div>
 
@@ -239,6 +238,27 @@
       <a href="#">Learn More</a>
     </div>
   </section>
+
+  <!-- ✅ 로그인 상태에 따라 버튼 바꿔주는 스크립트 -->
+  <script>
+    const loginBtn = document.querySelector('.login-btn');
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      loginBtn.textContent = "Logout";
+      loginBtn.href = "#";
+
+      loginBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("isLoggedIn");
+        window.location.reload();
+      });
+    } else {
+      loginBtn.textContent = "Login";
+      loginBtn.href = "https://projectpaw.co.kr/login.html";
+    }
+  </script>
 </body>
 </html>
+
 
