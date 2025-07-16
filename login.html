@@ -11,7 +11,6 @@
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
     Kakao.init('9917e1abbf40830145f513dc1121157b');
-    console.log('Kakao SDK 초기화됨:', Kakao.isInitialized());
   </script>
 
   <!-- Naver SDK -->
@@ -108,16 +107,9 @@
     .kakao  { background: #fee500; color: #000; font-weight: bold; }
     .naver  { background: #1ec800; }
 
-    .login-link {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      border: 1px solid #3daef3;
-      padding: 5px 15px;
-      border-radius: 15px;
-      color: #3daef3;
-      text-decoration: none;
-      font-size: 14px;
+    /* 숨김 처리된 네이버 SDK 버튼 */
+    #naverIdLogin {
+      display: none;
     }
   </style>
 </head>
@@ -133,7 +125,6 @@
     </div>
   </div>
   <div class="content">
-    <a href="#" class="login-link">Login</a>
     <h2>SNS계정으로 간편로그인하기</h2>
     <div class="sns-buttons">
       <!-- Google -->
@@ -147,6 +138,9 @@
       <!-- Naver -->
       <div class="login-button naver" id="naver-login-btn">N</div>
     </div>
+
+    <!-- 숨김 네이버 SDK 버튼 -->
+    <div id="naverIdLogin"></div>
   </div>
 
   <!-- 로그인 기능 스크립트 -->
@@ -155,23 +149,16 @@
     document.getElementById('kakao-login-btn').addEventListener('click', function () {
       Kakao.Auth.login({
         success: function (authObj) {
-          console.log('카카오 로그인 성공', authObj);
           Kakao.API.request({
             url: '/v2/user/me',
             success: function (res) {
-              console.log('사용자 정보:', res);
               alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
               window.location.assign('https://projectpaw.co.kr');
-            },
-            fail: function (error) {
-              console.error('사용자 정보 요청 실패', error);
-              alert('사용자 정보를 가져오는 데 실패했습니다.');
             }
           });
         },
         fail: function (err) {
-          console.error('카카오 로그인 실패', err);
-          alert('카카오 로그인에 실패했습니다.');
+          alert('카카오 로그인 실패');
         }
       });
     });
@@ -182,36 +169,30 @@
         client_id: "656866984778-8jsv71j60fsjf4d34d0hav83i4ktf8u7.apps.googleusercontent.com",
         callback: handleCredentialResponse
       });
-
       document.getElementById('google-login-btn').addEventListener('click', function () {
-        google.accounts.id.prompt(); // 자동 로그인 UI 표시
+        google.accounts.id.prompt();
+      });
+
+      // ✅ Naver Login SDK 설정
+      const naverLogin = new naver.LoginWithNaverId({
+        clientId: "SO07cKed8aScWuacSBqk",
+        callbackUrl: window.location.origin + "/naver_callback.html",
+        isPopup: true,
+        loginButton: { color: "green", type: 3, height: 40 }
+      });
+      naverLogin.init();
+
+      document.getElementById('naver-login-btn').addEventListener('click', function () {
+        document.querySelector('#naverIdLogin a').click();
       });
     };
 
     function handleCredentialResponse(response) {
       const jwt = response.credential;
-      console.log("Google JWT:", jwt);
-
       const payload = JSON.parse(atob(jwt.split('.')[1]));
       alert(`${payload.name || payload.email}님 환영합니다!`);
       window.location.assign('https://projectpaw.co.kr');
     }
-
-    // ✅ Naver Login
-    document.getElementById('naver-login-btn').addEventListener('click', function () {
-      const naverLogin = new naver.LoginWithNaverId({
-        clientId: "SO07cKed8aScWuacSBqk",
-        callbackUrl: window.location.origin + "/naver_callback.html", // 콜백 페이지 만들어주세요!
-        isPopup: true,
-        loginButton: { color: "green", type: 3, height: 40 } // 안 씀
-      });
-      naverLogin.init();
-      naverLogin.getLoginStatus(function (status) {
-        if (!status) {
-          naverLogin.login();
-        }
-      });
-    });
   </script>
 </body>
 </html>
