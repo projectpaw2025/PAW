@@ -152,28 +152,29 @@
   </div>
 
   <!-- 로그인 기능 스크립트 -->
-  <script>
-    document.getElementById('kakao-login-btn').addEventListener('click', function () {
-      Kakao.Auth.login({
-        success: function (authObj) {
-          console.log('카카오 로그인 성공', authObj);
-          Kakao.API.request({
-            url: '/v2/user/me',
-            success: function (res) {
-              console.log('사용자 정보:', res);
-              alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
-            },
-            fail: function (error) {
-              console.error('사용자 정보 요청 실패', error);
-            }
-          });
-        },
-        fail: function (err) {
-          console.error('카카오 로그인 실패', err);
-        }
-      });
+ <script>
+  document.getElementById('kakao-login-btn').addEventListener('click', function () {
+    Kakao.Auth.login({
+      success: function (authObj) {
+        console.log('카카오 로그인 성공', authObj);
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (res) {
+            console.log('사용자 정보:', res);
+            alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
+            // ✅ 로그인 성공 후 메인 화면으로 이동
+            window.location.href = 'https://projectpaw.co.kr';
+          },
+          fail: function (error) {
+            console.error('사용자 정보 요청 실패', error);
+            alert('사용자 정보를 가져오는 데 실패했습니다.');
+          }
+        });
+      },
+      fail: function (err) {
+        console.error('카카오 로그인 실패', err);
+        alert('카카오 로그인에 실패했습니다.');
+      }
     });
-  </script>
-</body>
-</html>
-
+  });
+</script>
