@@ -163,7 +163,7 @@
             console.log('사용자 정보:', res);
             alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
             // ✅ 로그인 성공 후 메인 화면으로 이동
-            window.location.href = 'https://projectpaw.co.kr';
+            window.location.assign('https://projectpaw.co.kr');
           },
           fail: function (error) {
             console.error('사용자 정보 요청 실패', error);
