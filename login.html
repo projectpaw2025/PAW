@@ -3,15 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <title>로그인 페이지</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-  <style>
-    /* 스타일 동일 생략... (기존 스타일 유지) */
-  </style>
-  <!-- ✅ Kakao SDK 추가 -->
+
+  <!-- 카카오 SDK -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init('9917e1abbf40830145f513dc1121157b'); // 발급받은 JavaScript 키
+    console.log('Kakao SDK 초기화됨:', Kakao.isInitialized());
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 30%;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .sidebar-logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .sidebar-logo i {
+      margin-left: 5px;
+    }
+
+    .decor {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .decor span {
+      width: 10px;
+      height: 10px;
+      background: #3daef3;
+      border-radius: 50%;
+    }
+
+    .content {
+      width: 70%;
+      background: #fff;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .content h2 {
+      color: #777;
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    .sns-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .login-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .login-button:hover {
+      transform: scale(1.1);
+    }
+
+    .google { background: #db4437; }
+    .apple  { background: #000; }
+    .kakao  { background: #fee500; color: #000; font-weight: bold; }
+    .naver  { background: #1ec800; }
+    .instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+
+    .login-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: 1px solid #3daef3;
+      padding: 5px 15px;
+      border-radius: 15px;
+      color: #3daef3;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
   <div class="sidebar">
@@ -34,7 +138,8 @@
       <div class="login-button apple">
         <i class="fab fa-apple"></i>
       </div>
-      <div class="login-button kakao">
+      <!-- kakao 로그인 버튼에 id 추가 -->
+      <div class="login-button kakao" id="kakao-login-btn">
         K
       </div>
       <div class="login-button naver">
@@ -46,35 +151,29 @@
     </div>
   </div>
 
-  <!-- ✅ 로그인 스크립트 -->
+  <!-- 로그인 기능 스크립트 -->
   <script>
-    // 카카오 SDK 초기화
-    Kakao.init('9917e1abbf40830145f513dc1121157b'); // <- 여기에 본인의 JavaScript 키 입력
-    console.log('Kakao SDK 초기화됨:', Kakao.isInitialized());
-
-    // 카카오 로그인 버튼 클릭 이벤트 연결
-    document.querySelector('.login-button.kakao').addEventListener('click', function () {
+    document.getElementById('kakao-login-btn').addEventListener('click', function () {
       Kakao.Auth.login({
         success: function (authObj) {
           console.log('카카오 로그인 성공', authObj);
-
-          // 사용자 정보 가져오기
           Kakao.API.request({
             url: '/v2/user/me',
             success: function (res) {
               console.log('사용자 정보:', res);
-              alert(`환영합니다, ${res.kakao_account.profile.nickname}님!`);
+              alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
             },
             fail: function (error) {
-              console.error('사용자 정보 요청 실패:', error);
+              console.error('사용자 정보 요청 실패', error);
             }
           });
         },
         fail: function (err) {
-          console.error('카카오 로그인 실패:', err);
+          console.error('카카오 로그인 실패', err);
         }
       });
     });
   </script>
 </body>
 </html>
+
