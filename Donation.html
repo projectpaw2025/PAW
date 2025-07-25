@@ -2,34 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PAW Donation & Volunteer</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: #f8f8f8;
       color: #333;
-      background: #fff;
     }
     header {
+      background: white;
+      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      flex-wrap: wrap;
-    }
-    header .logo img {
-      height: 36px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
     }
     nav {
       display: flex;
-      gap: 16px;
       align-items: center;
-      flex-wrap: wrap;
-      margin-top: 10px;
+      gap: 16px;
     }
     nav a {
       text-decoration: none;
@@ -38,6 +33,8 @@
     }
     nav a.active {
       color: #007BFF;
+      font-weight: 600;
+      border-bottom: 2px solid #007BFF;
     }
     .login-btn {
       border: 1px solid #007BFF;
@@ -46,171 +43,212 @@
       border-radius: 20px;
       color: #007BFF;
       text-decoration: none;
+      font-size: 14px;
+    }
+    h2 span {
+      color: #007BFF;
     }
     .section {
-      padding: 48px 20px;
+      padding: 40px 16px;
       text-align: center;
+      background: #fff;
     }
-    .section h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    .section p {
-      color: #666;
+    .join-btn {
+      display: inline-block;
+      margin: 12px auto 32px;
+      padding: 8px 16px;
+      border: 1px solid #007BFF;
+      border-radius: 20px;
+      color: #007BFF;
+      background: white;
       font-size: 14px;
+      text-decoration: none;
     }
-    .cards-wrapper {
+    .card-grid {
       display: flex;
-      flex-wrap: wrap;
+      gap: 24px;
       justify-content: center;
-      gap: 32px;
-      margin-top: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
     }
     .card {
-      background: #fff;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      border-radius: 20px;
-      overflow: hidden;
-      width: 100%;
-      max-width: 400px;
+      background: #fcfbfa;
+      border-radius: 12px;
+      padding: 24px;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: left;
+      position: relative;
     }
     .card img {
-      width: 100%;
-      display: block;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 8px;
     }
-    .card-content {
-      padding: 16px;
-      text-align: left;
-    }
-    .card-content small {
-      display: block;
-      color: #999;
-      margin-bottom: 5px;
-    }
-    .card-content h4 {
-      margin: 0 0 10px 0;
-      font-size: 16px;
-    }
-    .progress-bar {
-      background: #eee;
-      border-radius: 4px;
-      overflow: hidden;
-      height: 4px;
-      margin: 10px 0;
-    }
-    .progress {
-      background: #007BFF;
-      height: 100%;
-      width: 45%;
-    }
-    .donate-btn {
-      display: inline-block;
-      border: 1px solid #007BFF;
-      color: #007BFF;
-      padding: 8px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    .actions {
+    .card-header {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 32px 16px;
+      align-items: center;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
-    .action {
+    .card small {
+      font-size: 12px;
+      color: #777;
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
+    }
+    .ask-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #2196f3;
+      color: white;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 0 12px 0 12px;
+    }
+    .donate-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .help-tag {
+      background: #e6f2ff;
+      color: #007BFF;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .donate-now {
       background: #007BFF;
       color: #fff;
+      border: none;
       border-radius: 20px;
-      padding: 20px;
-      text-align: center;
+      padding: 6px 16px;
+      font-size: 14px;
+      cursor: pointer;
     }
-    .action.secondary {
-      background: #f8f8f8;
-      color: #333;
+    .nav-arrows {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
     }
-    .action a {
-      display: inline-block;
-      margin-top: 10px;
-      background: #fff;
-      color: #007BFF;
-      padding: 5px 10px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 12px;
-    }
-    @media (min-width: 768px) {
-      .cards-wrapper {
-        flex-direction: row;
-      }
-      .actions {
-        flex-direction: row;
-        justify-content: center;
-      }
+    .nav-arrows button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="PAW Logo">
-    </div>
+    <img src="logo.png" alt="PAW Logo" height="36">
     <nav>
       <a href="index.html">Home</a>
       <a href="#">About</a>
-      <a href="#donation" class="active">Donation</a>
-      <a href="#">Blog</a>
+      <a href="#" class="active">Donation</a>
+      <a href="#">Ongoing</a>
       <a href="#">Contact</a>
       <a href="#">Menu</a>
       <a href="https://projectpaw.co.kr/login.html" class="login-btn">Login</a>
     </nav>
   </header>
 
-  <section id="donation" class="section">
-    <h2>Donating is about making a <span style="color:#007BFF;">Difference.</span></h2>
-    <p>Join our campaign to bring relief to those in need. Every action counts.</p>
-    <div class="cards-wrapper">
+  <section class="section">
+    <h2>Take the <span>Donation</span>-lead</h2>
+    <a class="join-btn" href="#">JOIN NOW</a>
+    <div class="card-grid">
       <div class="card">
-        <img src="main1.png" alt="Reena Rawat">
-        <div class="card-content">
-          <small>Category</small>
-          <h4>Reena Rawat's Battle Against Cancer</h4>
-          <div class="progress-bar"><div class="progress"></div></div>
-          <a href="#" class="donate-btn">Donate Now</a>
+        <div class="ask-btn">Ask Question</div>
+        <div class="card-header"><img src="person1.jpg"><div>Reena Rawat</div></div>
+        <small>Need help</small>
+        <h4>Need treatment of cancer</h4>
+        <p>An incredibly difficult battle as cancer. His strength gives us hope. We humbly ask your support, whether through a donation or sharing our story.</p>
+        <div class="donate-footer">
+          <span class="help-tag">Need help of $ 20,000</span>
+          <button class="donate-now">Donate Now</button>
         </div>
       </div>
       <div class="card">
-        <img src="main2.png" alt="Rahul Kadam">
-        <div class="card-content">
-          <small>Category</small>
-          <h4>Support Rahul's Heart Surgery</h4>
-          <div class="progress-bar"><div class="progress"></div></div>
-          <a href="#" class="donate-btn">Donate Now</a>
+        <div class="ask-btn">Ask Question</div>
+        <div class="card-header"><img src="person2.jpg"><div>Rahul Kadam</div></div>
+        <small>Need help</small>
+        <h4>Need help for heart surgery</h4>
+        <p>Our loved one urgently needs heart surgery. Any donation, big or small, can help save a life. Your support means everything.</p>
+        <div class="donate-footer">
+          <span class="help-tag">Need help of $ 23,000</span>
+          <button class="donate-now">Donate Now</button>
         </div>
       </div>
       <div class="card">
-        <img src="main1.png" alt="Rajesh Joy">
-        <div class="card-content">
-          <small>Category</small>
-          <h4>Help Rajesh Fight for Life</h4>
-          <div class="progress-bar"><div class="progress"></div></div>
-          <a href="#" class="donate-btn">Donate Now</a>
+        <div class="ask-btn">Ask Question</div>
+        <div class="card-header"><img src="person3.jpg"><div>Rajesh Joy</div></div>
+        <small>Need help</small>
+        <h4>Need help for survive therapy</h4>
+        <p>We are facing a life-threatening condition and urgently need financial support. Your generosity can make the difference.</p>
+        <div class="donate-footer">
+          <span class="help-tag">Need help of $ 22,000</span>
+          <button class="donate-now">Donate Now</button>
         </div>
       </div>
+    </div>
+    <div class="nav-arrows">
+      <button>&lt;</button>
+      <button>&gt;</button>
     </div>
   </section>
 
-  <section class="actions">
-    <div class="action">
-      <h4>Donation</h4>
-      <p>Contribute and help save lives with your generosity.</p>
-      <a href="#">Learn More</a>
+  <section class="section">
+    <h2>Take the <span>Volunteer</span>-lead</h2>
+    <a class="join-btn" href="#">JOIN NOW</a>
+    <div class="card-grid">
+      <div class="card">
+        <div class="ask-btn">Ask Question</div>
+        <div class="card-header"><img src="volunteer1.jpg"><div>Anita Sharma</div></div>
+        <small>Want to help</small>
+        <h4>Volunteering for Childcare Program</h4>
+        <p>I’m passionate about helping children. I’d like to offer my time and care in supporting community childcare efforts. Join me to make a difference.</p>
+        <div class="donate-footer">
+          <span class="help-tag">Time commitment: 5 hrs/week</span>
+          <button class="donate-now">Join Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ask-btn">Ask Question</div>
+        <div class="card-header"><img src="volunteer2.jpg"><div>Sunil Mehta</div></div>
+        <small>Want to help</small>
+        <h4>Teach Digital Skills to Youth</h4>
+        <p>Help me educate underprivileged youth with basic computer and internet skills. Together we can build a digitally inclusive society.</p>
+        <div class="donate-footer">
+          <span class="help-tag">Time commitment: 3 hrs/week</span>
+          <button class="donate-now">Join Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ask-btn">Ask Question</div>
+        <div class="card-header"><img src="volunteer3.jpg"><div>Kavita Rao</div></div>
+        <small>Want to help</small>
+        <h4>Support Local Health Drives</h4>
+        <p>I'm volunteering to support medical camps and health awareness programs in our region. Looking forward to joining hands with like-minded individuals.</p>
+        <div class="donate-footer">
+          <span class="help-tag">Time commitment: 2 hrs/week</span>
+          <button class="donate-now">Join Now</button>
+        </div>
+      </div>
     </div>
-    <div class="action secondary">
-      <h4>Volunteer</h4>
-      <p>Join our team and make a real-world difference.</p>
-      <a href="#">Learn More</a>
+    <div class="nav-arrows">
+      <button>&lt;</button>
+      <button>&gt;</button>
     </div>
   </section>
 
