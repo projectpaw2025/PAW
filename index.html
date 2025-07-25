@@ -1,149 +1,269 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>희망나눔 | 기부 플랫폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAW Donation</title>
   <style>
     * {
       box-sizing: border-box;
     }
     body {
       margin: 0;
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
       color: #333;
+      background: #fff;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffff;
       padding: 16px 24px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
     }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #2b6cb0;
+    header .logo img {
+      height: 36px;
+    }
+    nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
     }
     nav a {
-      margin-left: 20px;
       text-decoration: none;
       color: #333;
-      font-size: 1rem;
+      font-size: 14px;
+    }
+    nav a.active {
+      color: #007BFF;
     }
     .login-btn {
-      padding: 8px 16px;
-      background-color: #2b6cb0;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    .main-banner {
-      text-align: center;
-      background: url('https://source.unsplash.com/featured/?charity') no-repeat center;
-      background-size: cover;
-      padding: 80px 20px;
-      color: white;
-    }
-    .main-banner h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-    .main-banner p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-    .donate-btn {
-      background-color: #e53e3e;
-      color: white;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .stats-section {
-      display: flex;
-      justify-content: space-around;
-      padding: 40px 20px;
-      background-color: #fff;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat h2 {
-      color: #2b6cb0;
-      font-size: 2rem;
-      margin: 0;
-    }
-    .stat p {
-      margin-top: 8px;
-      font-size: 1rem;
-    }
-    footer {
-      background-color: #2d3748;
-      color: #cbd5e0;
-      padding: 24px;
-      text-align: center;
-      font-size: 0.9rem;
+      border: 1px solid #007BFF;
+      background: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: #007BFF;
+      text-decoration: none;
     }
 
-    @media (max-width: 768px) {
-      .stats-section {
-        flex-direction: column;
-        align-items: center;
+    .hero {
+      text-align: center;
+      padding: 48px 20px;
+    }
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 32px 16px;
+    }
+
+    .text-block {
+      max-width: 600px;
+      text-align: center;
+    }
+    .text-block h2 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .text-block span {
+      color: #007BFF;
+    }
+    .text-block p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .card {
+      background: #fff;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 400px;
+    }
+    .card img {
+      width: 100%;
+      display: block;
+    }
+    .card-content {
+      padding: 16px;
+    }
+    .card-content small {
+      display: block;
+      color: #999;
+      margin-bottom: 5px;
+    }
+    .card-content h4 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+    .progress-bar {
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 4px;
+      margin: 10px 0;
+    }
+    .progress {
+      background: #007BFF;
+      height: 100%;
+      width: 45%;
+    }
+    .donate-btn {
+      display: inline-block;
+      border: 1px solid #007BFF;
+      color: #007BFF;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 32px 16px;
+    }
+    .action {
+      background: #007BFF;
+      color: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+    .action.secondary {
+      background: #f8f8f8;
+      color: #333;
+    }
+    .action a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #fff;
+      color: #007BFF;
+      padding: 5px 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .content {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
       }
-      nav {
-        display: none;
+      .actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .text-block h2 {
+        font-size: 36px;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo">희망나눔</div>
+    <div class="logo">
+      <img src="logo.png" alt="PAW Logo">
+    </div>
     <nav>
-      <a href="#">소개</a>
-      <a href="#">캠페인</a>
-      <a href="#">기부현황</a>
-      <a href="#">문의하기</a>
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Donation</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+      <a href="#">Menu</a>
+      <a href="https://projectpaw.co.kr/login.html" class="login-btn">Login</a>
     </nav>
-    <button class="login-btn">로그인</button>
   </header>
 
-  <section class="main-banner">
-    <h1>작은 나눔이 큰 희망이 됩니다</h1>
-    <p>당신의 기부가 누군가에겐 삶의 희망이 됩니다</p>
-    <button class="donate-btn">지금 기부하기</button>
+  <section class="hero">
+    <h1>Help us <span style="color:#007BFF;">save</span> the world</h1>
+    <p>Mattis et aliquam fermentum sed sagittis eu elit mauris. Nisl eros vel neque vitae lorem molestie.</p>
   </section>
 
-  <section class="stats-section">
-    <div class="stat">
-      <h2>₩123,456,789</h2>
-      <p>총 기부금</p>
+  <section class="content">
+    <div class="text-block">
+      <h2>Donating is about making a <span>Difference.</span></h2>
+      <p>Eu viverra erat fusce tortor cum libero, pharetra. Nunc cursus cursus odio convallis aliquam in nunc. Commodo ultrices massa urna gravida interdum fringilla massa cum.</p>
     </div>
-    <div class="stat">
-      <h2>8,321명</h2>
-      <p>참여자 수</p>
+
+    <div class="card">
+      <img src="main1.png" alt="Children 1">
+      <div class="card-content">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+        <a href="#" class="donate-btn">Donate Now</a>
+      </div>
     </div>
-    <div class="stat">
-      <h2>52건</h2>
-      <p>진행중 캠페인</p>
+
+    <div class="card">
+      <img src="main2.png" alt="Children 2">
+      <div class="card-content">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+        <a href="#" class="donate-btn">Donate Now</a>
+      </div>
     </div>
   </section>
 
-  <footer>
-    © 2025 희망나눔 | 사업자등록번호 123-45-67890 | 고객센터 1588-1234<br />
-    개인정보처리방침 | 이용약관
-  </footer>
+  <section class="actions">
+    <div class="action">
+      <h4>Donation</h4>
+      <p>Mattis et aliquam fermentum sed sagittis eu elit mauris.</p>
+      <a href="#">Learn More</a>
+    </div>
+    <div class="action secondary">
+      <h4>Volunteer</h4>
+      <p>Mattis et aliquam fermentum sed sagittis eu elit mauris.</p>
+      <a href="#">Learn More</a>
+    </div>
+  </section>
 
+  <script>
+    const loginBtn = document.querySelector('.login-btn');
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      loginBtn.textContent = "Logout";
+      loginBtn.href = "#";
+
+      loginBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("isLoggedIn");
+        window.location.reload();
+      });
+    } else {
+      loginBtn.textContent = "Login";
+      loginBtn.href = "https://projectpaw.co.kr/login.html";
+    }
+  </script>
 </body>
 </html>
-
-
-
