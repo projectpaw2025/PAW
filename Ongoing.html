@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PAW Ongoing</title>
   <style>
     body {
@@ -11,6 +11,39 @@
       background: #f8f8f8;
       color: #333;
     }
+    header {
+      background: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+    nav a.active {
+      color: #007BFF;
+      font-weight: 600;
+      border-bottom: 2px solid #007BFF;
+    }
+    .login-btn {
+      border: 1px solid #007BFF;
+      background: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: #007BFF;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
     .section {
       padding: 48px 16px;
       text-align: center;
@@ -82,6 +115,18 @@
   </style>
 </head>
 <body>
+  <!-- ✅ 상단 헤더 -->
+  <header>
+    <img src="logo.png" alt="PAW Logo" height="36">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Donation.html">Donation</a>
+      <a href="Ongoing.html" class="active">Ongoing</a>
+      <a href="https://projectpaw.co.kr/login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- ✅ 콘텐츠 섹션 -->
   <section class="section">
     <h2>Help us <span>save</span> the world</h2>
     <p>Mattis et aliquam fermentum sed sagittis eu elit mauris. Nisl eros vel neque vitae lorem molestie.</p>
@@ -120,5 +165,25 @@
       </div>
     </div>
   </section>
+
+  <!-- ✅ 로그인 상태 처리 -->
+  <script>
+    const loginBtn = document.querySelector('.login-btn');
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      loginBtn.textContent = "Logout";
+      loginBtn.href = "#";
+      loginBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("isLoggedIn");
+        window.location.reload();
+      });
+    } else {
+      loginBtn.textContent = "Login";
+      loginBtn.href = "https://projectpaw.co.kr/login.html";
+    }
+  </script>
 </body>
 </html>
+
