@@ -1,264 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PAW Donation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>희망나눔 | 기부 플랫폼</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f9f9f9;
       color: #333;
-      background: #fff;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background-color: #ffffff;
+      padding: 16px 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-    header .logo img {
-      height: 40px;
-    }
-    nav {
-      display: flex;
-      gap: 20px;
-      align-items: center;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2b6cb0;
     }
     nav a {
+      margin-left: 20px;
       text-decoration: none;
       color: #333;
-      font-size: 14px;
-    }
-    nav a.active {
-      color: #007BFF;
+      font-size: 1rem;
     }
     .login-btn {
-      border: 1px solid #007BFF;
-      background: none;
-      padding: 6px 16px;
-      border-radius: 20px;
-      color: #007BFF;
-      text-decoration: none;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .hero h1 {
-      font-size: 32px;
-    }
-    .hero p {
-      color: #666;
-      margin-top: 10px;
-    }
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      padding: 40px 20px;
-    }
-    .text-block {
-      max-width: 500px;
-    }
-    .text-block h2 {
-      font-size: 40px;
-    }
-    .text-block span {
-      color: #007BFF;
-    }
-    .text-block p {
-      color: #666;
-      line-height: 1.6;
-    }
-
-    .card {
-      background: #fff;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      border-radius: 20px;
-      overflow: hidden;
-      max-width: 400px;
-    }
-    .card img {
-      width: 100%;
-      display: block;
-    }
-    .card-content {
-      padding: 20px;
-    }
-    .card-content small {
-      display: block;
-      color: #999;
-      margin-bottom: 5px;
-    }
-    .card-content h4 {
-      margin: 0 0 10px 0;
-      font-size: 16px;
-    }
-    .progress-bar {
-      background: #eee;
+      padding: 8px 16px;
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
       border-radius: 4px;
-      overflow: hidden;
-      height: 4px;
-      margin: 10px 0;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
-    .progress {
-      background: #007BFF;
-      height: 100%;
-      width: 45%;
+    .main-banner {
+      text-align: center;
+      background: url('https://source.unsplash.com/featured/?charity') no-repeat center;
+      background-size: cover;
+      padding: 80px 20px;
+      color: white;
+    }
+    .main-banner h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .main-banner p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
     }
     .donate-btn {
-      display: inline-block;
-      border: 1px solid #007BFF;
-      color: #007BFF;
-      padding: 8px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
+      background-color: #e53e3e;
+      color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
-
-    .actions {
+    .stats-section {
       display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content: space-around;
       padding: 40px 20px;
+      background-color: #fff;
     }
-    .action {
-      background: #007BFF;
-      color: #fff;
-      border-radius: 20px;
-      padding: 20px;
-      width: 180px;
+    .stat {
       text-align: center;
     }
-    .action.secondary {
-      background: #f8f8f8;
-      color: #333;
+    .stat h2 {
+      color: #2b6cb0;
+      font-size: 2rem;
+      margin: 0;
     }
-    .action a {
-      display: inline-block;
-      margin-top: 10px;
-      background: #fff;
-      color: #007BFF;
-      padding: 5px 10px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 12px;
+    .stat p {
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+    footer {
+      background-color: #2d3748;
+      color: #cbd5e0;
+      padding: 24px;
+      text-align: center;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        flex-wrap: wrap;
-        margin-top: 10px;
-      }
-      .content {
+      .stats-section {
         flex-direction: column;
         align-items: center;
       }
-      .text-block h2 {
-        font-size: 32px;
-      }
-      .hero h1 {
-        font-size: 26px;
+      nav {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="PAW Logo">
-    </div>
+    <div class="logo">희망나눔</div>
     <nav>
-      <a href="#" class="active">Home</a>
-      <a href="#">About</a>
-      <a href="#">Donation</a>
-      <a href="#">Blog</a>
-      <a href="#">Contact</a>
-      <a href="#">Menu</a>
-      <!-- ✅ 로그인/로그아웃 버튼 -->
-      <a href="https://projectpaw.co.kr/login.html" class="login-btn">Login</a>
+      <a href="#">소개</a>
+      <a href="#">캠페인</a>
+      <a href="#">기부현황</a>
+      <a href="#">문의하기</a>
     </nav>
+    <button class="login-btn">로그인</button>
   </header>
 
-  <section class="hero">
-    <h1>Help us <span style="color:#007BFF;">save</span> the world</h1>
-    <p>Mattis et aliquam fermentum sed sagittis eu elit mauris. Nisl eros vel neque vitae lorem molestie.</p>
+  <section class="main-banner">
+    <h1>작은 나눔이 큰 희망이 됩니다</h1>
+    <p>당신의 기부가 누군가에겐 삶의 희망이 됩니다</p>
+    <button class="donate-btn">지금 기부하기</button>
   </section>
 
-  <section class="content">
-    <div class="text-block">
-      <h2>Donating is about making a <span>Difference.</span></h2>
-      <p>Eu viverra erat fusce tortor cum libero, pharetra. Nunc cursus cursus odio convallis aliquam in nunc. Commodo ultrices massa urna gravida interdum fringilla massa cum.</p>
+  <section class="stats-section">
+    <div class="stat">
+      <h2>₩123,456,789</h2>
+      <p>총 기부금</p>
     </div>
-
-    <div class="card">
-      <img src="main1.png" alt="Children 1">
-      <div class="card-content">
-        <small>Category 2</small>
-        <h4>Ensuring medicine for all the children.</h4>
-        <div class="progress-bar">
-          <div class="progress"></div>
-        </div>
-        <a href="#" class="donate-btn">Donate Now</a>
-      </div>
+    <div class="stat">
+      <h2>8,321명</h2>
+      <p>참여자 수</p>
     </div>
-
-    <div class="card">
-      <img src="main2.png" alt="Children 2">
-      <div class="card-content">
-        <small>Category 2</small>
-        <h4>Ensuring medicine for all the children.</h4>
-        <div class="progress-bar">
-          <div class="progress"></div>
-        </div>
-        <a href="#" class="donate-btn">Donate Now</a>
-      </div>
+    <div class="stat">
+      <h2>52건</h2>
+      <p>진행중 캠페인</p>
     </div>
   </section>
 
-  <section class="actions">
-    <div class="action">
-      <h4>Donation</h4>
-      <p>Mattis et aliquam fermentum sed sagittis eu elit mauris.</p>
-      <a href="#">Learn More</a>
-    </div>
-    <div class="action secondary">
-      <h4>Volunteer</h4>
-      <p>Mattis et aliquam fermentum sed sagittis eu elit mauris.</p>
-      <a href="#">Learn More</a>
-    </div>
-  </section>
+  <footer>
+    © 2025 희망나눔 | 사업자등록번호 123-45-67890 | 고객센터 1588-1234<br />
+    개인정보처리방침 | 이용약관
+  </footer>
 
-  <!-- ✅ 로그인 상태에 따라 버튼 바꿔주는 스크립트 -->
-  <script>
-    const loginBtn = document.querySelector('.login-btn');
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn === "true") {
-      loginBtn.textContent = "Logout";
-      loginBtn.href = "#";
-
-      loginBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        localStorage.removeItem("isLoggedIn");
-        window.location.reload();
-      });
-    } else {
-      loginBtn.textContent = "Login";
-      loginBtn.href = "https://projectpaw.co.kr/login.html";
-    }
-  </script>
 </body>
 </html>
+
 
 
