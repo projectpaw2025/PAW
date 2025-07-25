@@ -3,326 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PAW Donation & Volunteer</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <title>PAW Ongoing</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: Arial, sans-serif;
       background: #f8f8f8;
       color: #333;
     }
-    header {
-      background: white;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-size: 14px;
-    }
-    nav a.active {
-      color: #007BFF;
-      font-weight: 600;
-      border-bottom: 2px solid #007BFF;
-    }
-    .login-btn {
-      border: 1px solid #007BFF;
-      background: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      color: #007BFF;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    h2 span {
-      color: #007BFF;
-    }
     .section {
-      padding: 40px 16px;
+      padding: 48px 16px;
       text-align: center;
       background: #fff;
     }
-    .join-btn {
-      display: inline-block;
-      margin: 12px auto 32px;
-      padding: 8px 16px;
-      border: 1px solid #007BFF;
-      border-radius: 20px;
+    .section h2 span {
       color: #007BFF;
-      background: white;
-      font-size: 14px;
-      text-decoration: none;
+    }
+    .section p {
+      color: #777;
+      max-width: 600px;
+      margin: 8px auto 40px;
     }
     .card-grid {
       display: flex;
-      gap: 24px;
-      justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 32px;
+      justify-content: center;
+      gap: 24px;
     }
     .card {
-      background: #fcfbfa;
-      border-radius: 12px;
-      padding: 24px;
-      width: 300px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      text-align: left;
-      position: relative;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 16px;
+      width: 360px;
+      padding: 16px;
+      text-align: center;
     }
     .card img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-    .card-header {
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      margin-bottom: 8px;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
     }
     .card small {
+      color: #aaa;
+      font-size: 12px;
+    }
+    .card h4 {
+      margin: 8px 0 16px;
+      font-size: 16px;
+    }
+    .progress-bar {
+      width: 90%;
+      height: 4px;
+      background: #eee;
+      border-radius: 2px;
+      margin: 0 auto 8px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      width: 45%;
+      background: #007BFF;
+    }
+    .percent {
       font-size: 12px;
       color: #777;
+      margin-bottom: 12px;
     }
-    .card p {
-      font-size: 14px;
-      color: #555;
-    }
-    .ask-btn {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: #2196f3;
-      color: white;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 0 12px 0 12px;
-    }
-    .donate-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 16px;
-    }
-    .help-tag {
-      background: #e6f2ff;
+    .donate-btn {
+      border: 1px solid #007BFF;
+      background: none;
       color: #007BFF;
-      font-size: 12px;
-      padding: 4px 10px;
+      padding: 8px 20px;
       border-radius: 20px;
-    }
-    .donate-now {
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 16px;
+      text-decoration: none;
       font-size: 14px;
-      cursor: pointer;
-    }
-    .nav-arrows {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-    .nav-arrows button {
-      background: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      font-size: 18px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="PAW Logo" height="36">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="#">About</a>
-      <a href="#" class="active">Donation</a>
-      <a href="#">Ongoing</a>
-      <a href="#">Contact</a>
-      <a href="#">Menu</a>
-      <a href="https://projectpaw.co.kr/login.html" class="login-btn">Login</a>
-    </nav>
-  </header>
-
   <section class="section">
-    <h2>Take the <span>Donation</span>-lead</h2>
-    <a class="join-btn" href="#">JOIN NOW</a>
-    <div class="card-grid">
-      <div class="card">
-        <div class="ask-btn">Ask Question</div>
-        <div class="card-header"><img src="person1.jpg"><div>Reena Rawat</div></div>
-        <small>Need help</small>
-        <h4>Need treatment of cancer</h4>
-        <p>An incredibly difficult battle as cancer. His strength gives us hope. We humbly ask your support, whether through a donation or sharing our story.</p>
-        <div class="donate-footer">
-          <span class="help-tag">Need help of $ 20,000</span>
-          <button class="donate-now">Donate Now</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ask-btn">Ask Question</div>
-        <div class="card-header"><img src="person2.jpg"><div>Rahul Kadam</div></div>
-        <small>Need help</small>
-        <h4>Need help for heart surgery</h4>
-        <p>Our loved one urgently needs heart surgery. Any donation, big or small, can help save a life. Your support means everything.</p>
-        <div class="donate-footer">
-          <span class="help-tag">Need help of $ 23,000</span>
-          <button class="donate-now">Donate Now</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ask-btn">Ask Question</div>
-        <div class="card-header"><img src="person3.jpg"><div>Rajesh Joy</div></div>
-        <small>Need help</small>
-        <h4>Need help for survive therapy</h4>
-        <p>We are facing a life-threatening condition and urgently need financial support. Your generosity can make the difference.</p>
-        <div class="donate-footer">
-          <span class="help-tag">Need help of $ 22,000</span>
-          <button class="donate-now">Donate Now</button>
-        </div>
-      </div>
-    </div>
-    <div class="nav-arrows">
-      <button>&lt;</button>
-      <button>&gt;</button>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Take the <span>Volunteer</span>-lead</h2>
-    <a class="join-btn" href="#">JOIN NOW</a>
-    <div class="card-grid">
-      <div class="card">
-        <div class="ask-btn">Ask Question</div>
-        <div class="card-header"><img src="volunteer1.jpg"><div>Anita Sharma</div></div>
-        <small>Want to help</small>
-        <h4>Volunteering for Childcare Program</h4>
-        <p>I’m passionate about helping children. I’d like to offer my time and care in supporting community childcare efforts. Join me to make a difference.</p>
-        <div class="donate-footer">
-          <span class="help-tag">Time commitment: 5 hrs/week</span>
-          <button class="donate-now">Join Now</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ask-btn">Ask Question</div>
-        <div class="card-header"><img src="volunteer2.jpg"><div>Sunil Mehta</div></div>
-        <small>Want to help</small>
-        <h4>Teach Digital Skills to Youth</h4>
-        <p>Help me educate underprivileged youth with basic computer and internet skills. Together we can build a digitally inclusive society.</p>
-        <div class="donate-footer">
-          <span class="help-tag">Time commitment: 3 hrs/week</span>
-          <button class="donate-now">Join Now</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ask-btn">Ask Question</div>
-        <div class="card-header"><img src="volunteer3.jpg"><div>Kavita Rao</div></div>
-        <small>Want to help</small>
-        <h4>Support Local Health Drives</h4>
-        <p>I'm volunteering to support medical camps and health awareness programs in our region. Looking forward to joining hands with like-minded individuals.</p>
-        <div class="donate-footer">
-          <span class="help-tag">Time commitment: 2 hrs/week</span>
-          <button class="donate-now">Join Now</button>
-        </div>
-      </div>
-    </div>
-    <div class="nav-arrows">
-      <button>&lt;</button>
-      <button>&gt;</button>
-    </div>
-  </section>
-
-  <section class="section" id="ongoing">
     <h2>Help us <span>save</span> the world</h2>
     <p>Mattis et aliquam fermentum sed sagittis eu elit mauris. Nisl eros vel neque vitae lorem molestie.</p>
     <div class="card-grid">
-      <div class="card" style="max-width: 380px; text-align: center;">
-        <img src="ongoing1.jpg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" alt="Children">
-        <div style="text-align: left; padding: 0 8px;">
-          <small style="color: #888;">Category 2</small>
-          <h4 style="margin: 4px 0 12px; font-size: 16px; font-weight: 600;">Ensuring medicine for all the children.</h4>
-        </div>
-        <div style="width: 90%; margin: 0 auto; background: #eee; height: 4px; border-radius: 2px; overflow: hidden;">
-          <div style="width: 45%; height: 100%; background: #007BFF;"></div>
-        </div>
-        <p style="font-size: 12px; margin: 6px 0 16px; color: #888;">45%</p>
-        <button class="donate-now" style="background: none; color: #007BFF; border: 1px solid #007BFF;">Donate Now</button>
+      <div class="card">
+        <img src="ongoing1.jpg" alt="Children">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <div class="percent">45%</div>
+        <button class="donate-btn">Donate Now</button>
       </div>
-      <div class="card" style="max-width: 380px; text-align: center;">
-        <img src="ongoing2.jpg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" alt="Children">
-        <div style="text-align: left; padding: 0 8px;">
-          <small style="color: #888;">Category 2</small>
-          <h4 style="margin: 4px 0 12px; font-size: 16px; font-weight: 600;">Ensuring medicine for all the children.</h4>
-        </div>
-        <div style="width: 90%; margin: 0 auto; background: #eee; height: 4px; border-radius: 2px; overflow: hidden;">
-          <div style="width: 45%; height: 100%; background: #007BFF;"></div>
-        </div>
-        <p style="font-size: 12px; margin: 6px 0 16px; color: #888;">45%</p>
-        <button class="donate-now" style="background: none; color: #007BFF; border: 1px solid #007BFF;">Donate Now</button>
+      <div class="card">
+        <img src="ongoing2.jpg" alt="Children">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <div class="percent">45%</div>
+        <button class="donate-btn">Donate Now</button>
       </div>
-      <div class="card" style="max-width: 380px; text-align: center;">
-        <img src="ongoing1.jpg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" alt="Children">
-        <div style="text-align: left; padding: 0 8px;">
-          <small style="color: #888;">Category 2</small>
-          <h4 style="margin: 4px 0 12px; font-size: 16px; font-weight: 600;">Ensuring medicine for all the children.</h4>
-        </div>
-        <div style="width: 90%; margin: 0 auto; background: #eee; height: 4px; border-radius: 2px; overflow: hidden;">
-          <div style="width: 45%; height: 100%; background: #007BFF;"></div>
-        </div>
-        <p style="font-size: 12px; margin: 6px 0 16px; color: #888;">45%</p>
-        <button class="donate-now" style="background: none; color: #007BFF; border: 1px solid #007BFF;">Donate Now</button>
+      <div class="card">
+        <img src="ongoing1.jpg" alt="Children">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <div class="percent">45%</div>
+        <button class="donate-btn">Donate Now</button>
       </div>
-      <div class="card" style="max-width: 380px; text-align: center;">
-        <img src="ongoing2.jpg" style="width: 100%; border-radius: 12px; margin-bottom: 10px;" alt="Children">
-        <div style="text-align: left; padding: 0 8px;">
-          <small style="color: #888;">Category 2</small>
-          <h4 style="margin: 4px 0 12px; font-size: 16px; font-weight: 600;">Ensuring medicine for all the children.</h4>
-        </div>
-        <div style="width: 90%; margin: 0 auto; background: #eee; height: 4px; border-radius: 2px; overflow: hidden;">
-          <div style="width: 45%; height: 100%; background: #007BFF;"></div>
-        </div>
-        <p style="font-size: 12px; margin: 6px 0 16px; color: #888;">45%</p>
-        <button class="donate-now" style="background: none; color: #007BFF; border: 1px solid #007BFF;">Donate Now</button>
+      <div class="card">
+        <img src="ongoing2.jpg" alt="Children">
+        <small>Category 2</small>
+        <h4>Ensuring medicine for all the children.</h4>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <div class="percent">45%</div>
+        <button class="donate-btn">Donate Now</button>
       </div>
     </div>
   </section>
-
-<script>
-    const loginBtn = document.querySelector('.login-btn');
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn === "true") {
-      loginBtn.textContent = "Logout";
-      loginBtn.href = "#";
-      loginBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        localStorage.removeItem("isLoggedIn");
-        window.location.reload();
-      });
-    } else {
-      loginBtn.textContent = "Login";
-      loginBtn.href = "https://projectpaw.co.kr/login.html";
-    }
-  </script>
 </body>
 </html>
