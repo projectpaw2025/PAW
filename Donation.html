@@ -254,19 +254,19 @@
 
   <script>
     const loginBtn = document.querySelector('.login-btn');
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const isLoggedIn = localStorage.getItem(\"isLoggedIn\");
 
-    if (isLoggedIn === "true") {
-      loginBtn.textContent = "Logout";
-      loginBtn.href = "#";
-      loginBtn.addEventListener("click", function(e) {
+    if (isLoggedIn === \"true\") {
+      loginBtn.textContent = \"Logout\";
+      loginBtn.href = \"#\";
+      loginBtn.addEventListener(\"click\", function(e) {
         e.preventDefault();
-        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem(\"isLoggedIn\");
         window.location.reload();
       });
     } else {
-      loginBtn.textContent = "Login";
-      loginBtn.href = "https://projectpaw.co.kr/login.html";
+      loginBtn.textContent = \"Login\";
+      loginBtn.href = \"https://projectpaw.co.kr/login.html\";
     }
   </script>
 </body>
