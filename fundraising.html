@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fundraising Form - Project.PAW</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fffefc; color: #333; padding: 40px; }
+    .container { max-width: 700px; margin: auto; padding: 24px; border: 1px solid #eee; border-radius: 12px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    h2 { color: #ff70a6; }
+    input, textarea, select, button {
+      width: 100%;
+      margin-bottom: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    input[disabled] {
+      background-color: #f3f3f3;
+      color: #aaa;
+    }
+    button {
+      background-color: #ff70a6;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    .info {
+      background: #fff0f5;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-left: 4px solid #ff70a6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Fundraising 프로젝트 등록</h2>
+    <form id="fundraisingForm">
+      <input type="text" placeholder="고양이 이름" required />
+      <select required>
+        <option value="">누구를 위한 모금인가요?</option>
+        <option value="yourself">나 자신을 위해</option>
+        <option value="someone">다른 동물을 위해</option>
+      </select>
+      <input type="number" placeholder="목표 금액 (원)" required />
+      <textarea rows="4" placeholder="사연을 입력해주세요" required></textarea>
+      <input type="text" placeholder="동물병원 이름 (비활성화)" disabled />
+      <input type="text" placeholder="계좌번호 (비활성화)" disabled />
+
+      <div class="info">
+        💡 Project.PAW는 아직 <strong>베타 서비스</strong>입니다.<br />
+        현재는 <strong>카카오톡 오픈채팅</strong>을 통해 구조자와 후원자가 직접 연결되고 있습니다.
+      </div>
+      <input type="url" id="kakaoInput" placeholder="카카오톡 오픈채팅 링크를 입력하세요" required />
+      <button type="button" onclick="goToKakao()">등록 및 채팅방 이동</button>
+    </form>
+  </div>
+
+  <script>
+    function goToKakao() {
+      const url = document.getElementById("kakaoInput").value;
+      if (url && url.startsWith("http")) {
+        window.open(url, "_blank");
+        alert("프로젝트가 등록되었습니다! 채팅방으로 이동합니다.");
+      } else {
+        alert("올바른 카카오톡 오픈채팅 링크를 입력해주세요.");
+      }
+    }
+  </script>
+</body>
+</html>
