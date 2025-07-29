@@ -41,11 +41,17 @@
     .sidebar-logo {
       font-size: 24px;
       font-weight: bold;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     .sidebar-logo i {
       margin-left: 5px;
+    }
+
+    .sidebar img {
+      max-width: 80%;
+      border-radius: 12px;
+      margin-bottom: 20px;
     }
 
     .decor {
@@ -73,6 +79,21 @@
       justify-content: center;
       align-items: center;
       position: relative;
+    }
+
+    .content nav {
+      margin-bottom: 2rem;
+    }
+
+    .content nav a {
+      text-decoration: none;
+      color: #333;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .content nav a:hover {
+      color: #3daef3;
     }
 
     .content h2 {
@@ -117,6 +138,7 @@
     <div class="sidebar-logo">
       PAW <i class="fas fa-paw"></i>
     </div>
+    <img src="images/login_cat.jpg" alt="Login Cat" />
     <div class="decor">
       <span></span>
       <span></span>
@@ -124,6 +146,13 @@
     </div>
   </div>
   <div class="content">
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="Fundraising.html">Fundraising</a> |
+      <a href="Donation.html">Donation</a>
+    </nav>
+
     <h2>SNS계정으로 간편로그인하기</h2>
     <div class="sns-buttons">
       <!-- Google -->
@@ -143,7 +172,7 @@
   </div>
 
   <script>
-    // Kakao 로그인 (scope 추가 및 팝업 -> 부모창 이동 처리)
+    // Kakao 로그인
     document.getElementById('kakao-login-btn').addEventListener('click', function () {
       Kakao.Auth.login({
         scope: 'profile_nickname,account_email',
@@ -151,7 +180,7 @@
           Kakao.API.request({
             url: '/v2/user/me',
             success: function (res) {
-              console.log(res); // 사용자 정보 확인용
+              console.log(res);
               alert(`${res.kakao_account.profile.nickname}님 환영합니다!`);
               if (window.opener) {
                 window.opener.localStorage.setItem("isLoggedIn", "true");
